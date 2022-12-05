@@ -1,0 +1,118 @@
+﻿<Window x:Class="MapsUkraine.AboutWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MapsUkraine"
+        mc:Ignorable="d"
+        Title="Ukraine Maps" 
+        Icon="/Photo/icon.png"
+        Height="362" 
+        Width="680"
+        MinHeight="300"
+        MinWidth="700" 
+        ResizeMode="NoResize" 
+        WindowStartupLocation="CenterScreen">
+    <Grid Style="{DynamicResource StyleGrid}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="18*"/>
+            <ColumnDefinition Width="263*"/>
+            <ColumnDefinition Width="19*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="55*"/>
+            <RowDefinition Height="379*"/>
+            <RowDefinition Height="50*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Style="{DynamicResource StyleStackPanel}"
+            Width="900"
+            Height="52"
+            VerticalAlignment="Top" 
+            Grid.ColumnSpan="3">
+            <Grid Height="50">
+
+                <Border Style="{DynamicResource StyleBorder}" 
+                        Height="16"
+                        CornerRadius="0,3,3,0"
+                        Width="6"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Left"/>
+
+                <TextBlock Text="Welcome to Maps Ukraine" 
+                           Style="{DynamicResource StyleTextBlock}"
+                           FontSize="14"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Left" 
+                           FontFamily="Felix Titling"
+                           Margin="20,0,0,0"/>
+
+            </Grid>
+
+        </StackPanel>
+
+        <Button x:Name="btnReturn" 
+                Grid.Column="2" 
+                Cursor="Hand"
+                Background="#FF636DEC" 
+                BorderBrush="#FFA9A0A0" 
+                Foreground="{x:Null}"
+                HorizontalAlignment="Center" 
+                VerticalAlignment="Center" Click="btnReturn_Click" Width="40" Height="23">
+            <Image Source="Photo/back.png" 
+            Width="30" HorizontalAlignment="Center" 
+            VerticalAlignment="Center"
+            Stretch="Uniform"/>
+        </Button>
+
+
+        <Grid Grid.Row="1" Grid.Column="1" Margin="10,10,10,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="7*"/>
+                <ColumnDefinition Width="19*"/>
+                <ColumnDefinition Width="7*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="6*"/>
+                <RowDefinition Height="35*"/>
+            </Grid.RowDefinitions>
+            <Border 
+            Background="#FF766784"
+            CornerRadius="30"
+            BorderThickness="2"
+            BorderBrush="Black"
+            Grid.RowSpan="2" 
+            Grid.ColumnSpan="3" Margin="0,0,-17,0"/>
+
+            <TextBlock
+                Grid.ColumnSpan="3" 
+                FontFamily="Century Gothic"
+                FontSize="18" 
+                Style="{DynamicResource StyleTextBlock}"
+                Margin="10,24,-72,29" Grid.Row="1">
+                <Run Text="Це програма про карти України: географічні та топографічні."/>
+                <LineBreak/>
+                <Run Text="В ній ви можете подивитись географічні та топографічні карти"/>
+                <LineBreak/>
+                <Run Text="областей україни. їх умовні знаки, та позначити для себе цікаві"/>
+                <LineBreak/>
+                <Run Text="міста для майбутніх подорожей."/>
+                <LineBreak/>
+                <Run Text="В програмі ви можете вибрати різні стилі, починаючи від білого,"/>
+                <LineBreak/>
+                <Run Text="закінчуючи українським."/>
+            </TextBlock>
+
+
+        </Grid>
+
+        <TextBlock Text="About"
+                FontSize="36" 
+                FontFamily="Felix Titling" 
+                HorizontalAlignment="Left" 
+                VerticalAlignment="Top" 
+                Style="{DynamicResource StyleTextBlock}"
+                Grid.Column="1"
+                Grid.Row="1" Margin="226,10,0,0"/>
+    </Grid>
+</Window>

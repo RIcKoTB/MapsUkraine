@@ -1,0 +1,396 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Style x:Key="StyleFromPasswordBox" TargetType="PasswordBox">
+        <Setter Property="Control.FontSize" Value="16"/>
+        <Setter Property="Control.Foreground" Value="White"/>
+        <Setter Property="Control.Width" Value="190"/>
+        <Setter Property="Control.Height" Value="38"/>
+        <Setter Property="Control.Cursor" Value="Hand"/>
+        <Setter Property="Background" Value="#b7f8ea"/>
+        
+    </Style>
+
+    <Style x:Key="ButtonStyle" TargetType="Button">
+        <Setter Property="Control.Background" Value="#b7f8ea"/>
+        <Setter Property="Control.BorderThickness" Value="1" />
+        <Setter Property="Control.BorderBrush" Value="Black"/>
+        <Setter Property="Control.FontSize" Value="16"/>
+        <Setter Property="Control.Foreground" Value="Black"/>
+        <Setter Property="Control.Width" Value="190"/>
+        <Setter Property="Control.Height" Value="38"/>
+        <Setter Property="Control.Cursor" Value="Hand"/>
+        <Style.Resources>
+            <Style TargetType="Border">
+                <Setter Property="CornerRadius" Value="15" />
+                <Setter Property="Background" Value="#0B2240"/>
+            </Style>
+        </Style.Resources>
+
+    </Style>
+
+    <Style x:Key="StyleTextBlock" TargetType="TextBlock">
+        <Setter Property="Foreground" Value="White"/>
+    </Style>
+
+    <Style x:Key="StyleGrid" TargetType="Grid">
+        <Setter Property="Background" Value="#23262B"/>
+    </Style>
+
+    <Style x:Key="StyleStackPanel" TargetType="StackPanel">
+        <Setter Property="Background" Value="#2E333A"/>
+    </Style>
+
+    <Style x:Key="StyleBorder" TargetType="Border">
+        <Setter Property="Background" Value="#D61734"/>
+    </Style>
+
+
+    <ControlTemplate x:Key="Menu_SubMenu_Template"
+                     TargetType="{x:Type MenuItem}">
+
+        <Border x:Name="border"
+                Background="#2E333A"
+                BorderBrush="#2E333A"
+                BorderThickness="0"
+                Height="50"
+                Width="230">
+
+            <Grid>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition MinWidth="22"
+                                      Width="Auto" />
+                    <ColumnDefinition Width="13" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="30" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="20" />
+                </Grid.ColumnDefinitions>
+
+                <ContentPresenter x:Name="Icon"
+                                  ContentSource="Icon"
+                                  HorizontalAlignment="Left"
+                                  Height="35"
+                                  Width="35"
+                                  Margin="10,0,0,0"
+                                  VerticalAlignment="Center" />
+
+                <ContentPresenter ContentSource="Header"
+                                  Grid.Column="2"
+                                  TextBlock.Foreground="White"
+                                  TextBlock.FontFamily="Fonts/#Roboto Light"
+                                  TextBlock.FontSize="20"
+                                  HorizontalAlignment="Left"
+                                  RecognizesAccessKey="True"
+                                  Margin="3,0,0,0"
+                                  VerticalAlignment="Center" />
+
+                <Image Source="Photo/img_arrow.png"
+                       Stretch="None"
+                       Grid.Column="4"
+                       HorizontalAlignment="Left"
+                       VerticalAlignment="Center" />
+
+                <Popup x:Name="PART_Popup"
+                       AllowsTransparency="true"
+                       Focusable="false"
+                       HorizontalOffset="-2"
+                       IsOpen="{Binding IsSubmenuOpen, RelativeSource={RelativeSource TemplatedParent}}"
+                       Placement="Right"
+                       PopupAnimation="{DynamicResource {x:Static SystemParameters.MenuPopupAnimationKey}}"
+                       VerticalOffset="0">
+
+                    <Border x:Name="SubMenuBorder"
+                            Background="#2E333A"
+                            BorderBrush="#2E333A">
+
+                        <ScrollViewer x:Name="SubMenuScrollViewer"
+                                      Style="{DynamicResource {ComponentResourceKey ResourceId=MenuScrollViewer, TypeInTargetAssembly={x:Type FrameworkElement}}}">
+
+                            <Grid RenderOptions.ClearTypeHint="Enabled">
+
+                                <Canvas HorizontalAlignment="Left"
+                                        VerticalAlignment="Top" />
+
+                                <ItemsPresenter x:Name="ItemsPresenter"
+                                                KeyboardNavigation.DirectionalNavigation="Cycle"
+                                                Grid.IsSharedSizeScope="true"
+                                                KeyboardNavigation.TabNavigation="Cycle" />
+                            </Grid>
+                        </ScrollViewer>
+                    </Border>
+                </Popup>
+
+            </Grid>
+        </Border>
+
+        <ControlTemplate.Triggers>
+
+            <Trigger Property="IsSuspendingPopupAnimation"
+                     Value="true">
+                <Setter Property="PopupAnimation"
+                        TargetName="PART_Popup"
+                        Value="None" />
+            </Trigger>
+
+            <Trigger Property="Icon"
+                     Value="{x:Null}">
+                <Setter Property="Visibility"
+                        TargetName="Icon"
+                        Value="Visible" />
+            </Trigger>
+
+            <Trigger Property="IsChecked"
+                     Value="True">
+                <Setter Property="Visibility"
+                        TargetName="Icon"
+                        Value="Visible" />
+            </Trigger>
+
+            <Trigger Property="IsHighlighted"
+                     Value="True">
+                <Setter Property="Background"
+                        TargetName="border"
+                        Value="#404D5B" />
+                <Setter Property="BorderBrush"
+                        TargetName="border"
+                        Value="#404D5B" />
+            </Trigger>
+
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="Item_TemplateForMaps"
+                     TargetType="{x:Type MenuItem}">
+
+        <Border x:Name="border"
+                Background="#2E333A"
+                BorderBrush="#2E333A"
+                BorderThickness="{TemplateBinding BorderThickness}"
+                Height="50"
+                Width="230"
+               >
+
+            <Grid>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition MinWidth="22"
+                                      Width="Auto" />
+                    <ColumnDefinition Width="13" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="30" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="20" />
+                </Grid.ColumnDefinitions>
+
+                <ContentPresenter x:Name="Icon"
+                                  ContentSource="Icon"
+                                  HorizontalAlignment="Center"
+                                  Height="35"
+                                  Width="35"
+                                  Margin="10,0,0,0"
+                                  VerticalAlignment="Center" />
+
+                <Image Source="Photo/map.png"
+                       HorizontalAlignment="Center"
+                       Stretch="Fill"
+                       Height="30"
+                       Width="30"
+                       VerticalAlignment="Center"/>
+
+                <ContentPresenter ContentSource="Header"
+                                  Grid.Column="2"
+                                  TextBlock.Foreground="White"
+                                  TextBlock.FontFamily="Fonts/#Roboto Light"
+                                  TextBlock.FontSize="12"
+                                  HorizontalAlignment="Left"
+                                  RecognizesAccessKey="True"
+                                  Margin="3,0,0,0"
+                                  VerticalAlignment="Center" />
+
+
+            </Grid>
+        </Border>
+
+
+        <ControlTemplate.Triggers>
+
+            <Trigger Property="Icon"
+                     Value="{x:Null}">
+                <Setter Property="Visibility"
+                        TargetName="Icon"
+                        Value="Visible" />
+            </Trigger>
+
+            <Trigger Property="IsChecked"
+                     Value="True">
+                <Setter Property="Visibility"
+                        TargetName="Icon"
+                        Value="Visible" />
+            </Trigger>
+
+            <Trigger Property="IsHighlighted"
+                     Value="True">
+                <Setter Property="Background"
+                        TargetName="border"
+                        Value="#404D5B"/>
+                <Setter Property="BorderBrush"
+                        TargetName="border"
+                        Value="#404D5B"/>
+            </Trigger>
+
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="Menu_Template"
+                     TargetType="{x:Type MenuItem}">
+
+        <Border x:Name="border"
+                Background="#2E333A"
+                BorderBrush="#2E333A"
+                BorderThickness="0"
+                Height="50"
+                Width="230">
+
+            <Grid>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition MinWidth="22"
+                                      Width="Auto" />
+                    <ColumnDefinition Width="13" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="30" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="20" />
+                </Grid.ColumnDefinitions>
+
+                <ContentPresenter x:Name="Icon"
+                                  ContentSource="Icon"
+                                  HorizontalAlignment="Left"
+                                  Height="35"
+                                  Width="35"
+                                  Margin="10,0,0,0"
+                                  VerticalAlignment="Center" />
+
+                <ContentPresenter ContentSource="Header"
+                                  Grid.Column="2"
+                                  TextBlock.Foreground="#FFFFFF"
+                                  TextBlock.FontFamily="Fonts/#Roboto Light"
+                                  TextBlock.FontSize="20"
+                                  HorizontalAlignment="Left"
+                                  RecognizesAccessKey="True"
+                                  Margin="3,0,0,0"
+                                  VerticalAlignment="Center" />
+
+            </Grid>
+        </Border>
+
+        <ControlTemplate.Triggers>
+
+            <Trigger Property="Icon"
+                     Value="{x:Null}">
+                <Setter Property="Visibility"
+                        TargetName="Icon"
+                        Value="Visible" />
+            </Trigger>
+
+            <Trigger Property="IsChecked"
+                     Value="True">
+                <Setter Property="Visibility"
+                        TargetName="Icon"
+                        Value="Visible" />
+            </Trigger>
+
+            <Trigger Property="IsHighlighted"
+                     Value="True">
+                <Setter Property="Background"
+                        TargetName="border"
+                        Value="#404D5B" />
+                <Setter Property="BorderBrush"
+                        TargetName="border"
+                        Value="#404D5B" />
+            </Trigger>
+
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+
+    <ControlTemplate x:Key="Item_TemplateForExit"
+                     TargetType="{x:Type MenuItem}">
+
+        <Border x:Name="border"
+                Background="#2E333A"
+                BorderBrush="#2E333A"
+                BorderThickness="{TemplateBinding BorderThickness}"
+                Height="50"
+                Width="230"
+               >
+
+            <Grid>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition MinWidth="22"
+                                      Width="Auto" />
+                    <ColumnDefinition Width="13" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="30" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="20" />
+                </Grid.ColumnDefinitions>
+
+                <ContentPresenter x:Name="Icon"
+                                  ContentSource="Icon"
+                                  HorizontalAlignment="Center"
+                                  Height="35"
+                                  Width="35"
+                                  Margin="10,0,0,0"
+                                  VerticalAlignment="Center" />
+
+                <ContentPresenter ContentSource="Header"
+                                  Grid.Column="2"
+                                  TextBlock.Foreground="White"
+                                  TextBlock.FontFamily="Fonts/#Roboto Light"
+                                  TextBlock.FontSize="12"
+                                  HorizontalAlignment="Left"
+                                  RecognizesAccessKey="True"
+                                  Margin="3,0,0,0"
+                                  VerticalAlignment="Center" />
+
+
+            </Grid>
+        </Border>
+
+
+        <ControlTemplate.Triggers>
+
+            <Trigger Property="Icon"
+                     Value="{x:Null}">
+                <Setter Property="Visibility"
+                        TargetName="Icon"
+                        Value="Visible" />
+            </Trigger>
+
+            <Trigger Property="IsChecked"
+                     Value="True">
+                <Setter Property="Visibility"
+                        TargetName="Icon"
+                        Value="Visible" />
+            </Trigger>
+
+            <Trigger Property="IsHighlighted"
+                     Value="True">
+                <Setter Property="Background"
+                        TargetName="border"
+                        Value="#404D5B" />
+                <Setter Property="BorderBrush"
+                        TargetName="border"
+                        Value="#404D5B" />
+            </Trigger>
+
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+
+
+</ResourceDictionary>
